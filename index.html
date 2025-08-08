@@ -26,4 +26,109 @@
     <p>Date: 25th August 2025</p>
     <p>Venue: Royal Palace, Jaipur</p>
 </body>
+</html><!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wedding Vibes</title>
+
+  <!-- Optional: Google Font (if online) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --overlay: rgba(255,250,242,0.8);
+      --accent: #8a5b00;
+      --text: #3d2f20;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, Arial, sans-serif;background:#fbf6ee;color:var(--text)}
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+    /* Background layers */
+    .bg-media{position:fixed;inset:0;z-index:0;overflow:hidden}
+    .bg-media img, .bg-media video{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.95)}
+    /* subtle animated golden particles (CSS) */
+    .gold-particles{
+      position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.6;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(218,165,32,0.12) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 80%, rgba(218,165,32,0.10) 0 2px, transparent 3px),
+        radial-gradient(circle at 40% 40%, rgba(218,165,32,0.08) 0 3px, transparent 4px);
+      background-size: 300px 300px, 280px 280px, 320px 320px;
+      animation: moveParticles 10s linear infinite;
+      mix-blend-mode: screen;
+    }
+    @keyframes moveParticles{
+      from{transform:translateY(0)}
+      to{transform:translateY(-40px)}
+    }
+
+    /* content */
+    .card{position:relative;z-index:2;max-width:920px;width:100%;padding:24px;border-radius:14px;background:var(--overlay);box-shadow:0 12px 40px rgba(0,0,0,.12);text-align:center}
+    h1{margin:0;font-family:'Playfair Display', serif;font-size:34px;color:var(--accent);font-weight:700}
+    p.lead{margin:12px 0 0;font-size:17px;line-height:1.5;color:var(--text)}
+    .small{margin-top:12px;color:#6b533e;font-size:14px}
+    /* area for PNGs (caricature) */
+    .images-row{display:flex;gap:12px;justify-content:center;align-items:flex-end;margin-top:18px;flex-wrap:wrap}
+    .images-row img{max-height:160px;width:auto;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.14);background:transparent}
+
+    /* responsive */
+    @media (max-width:480px){
+      h1{font-size:26px}
+      .images-row img{max-height:120px}
+      .card{padding:16px;border-radius:12px}
+    }
+  </style>
+</head>
+<body>
+  <!-- BACKGROUND: If you want a video background upload background.mp4 and keep the <video> tag.
+       Otherwise upload background.jpg and it will be used. -->
+  <div class="bg-media" aria-hidden="true">
+    <!-- Uncomment video line if you upload background.mp4 -->
+    <!-- <video src="background.mp4" autoplay muted loop playsinline></video> -->
+    <img src="background.jpg" alt="background image"/>
+  </div>
+
+  <!-- subtle gold particles layer -->
+  <div class="gold-particles" aria-hidden="true"></div>
+
+  <main class="wrap" role="main">
+    <div class="card">
+      <h1>Wedding Vibes ✨</h1>
+      <p class="lead">
+        A new journey begins — two souls unite in love.<br>
+        Wishing a lifetime of joy and happiness to the beautiful couple.
+      </p>
+
+      <!-- If you have a caricature or decoration PNG, upload it and change the filename below -->
+      <div class="images-row">
+        <!-- Example: upload caricature.png, flower-left.png, flower-right.png -->
+        <!-- Remove or add <img> tags as needed -->
+        <img src="caricature.png" alt="Couple" onerror="this.style.display='none'">
+        <img src="flower-left.png" alt="Decor" onerror="this.style.display='none'">
+        <img src="flower-right.png" alt="Decor" onerror="this.style.display='none'">
+      </div>
+
+      <div class="small">✨ Celebrate Love ✨</div>
+    </div>
+  </main>
+
+  <!-- Optional simple script: if you uploaded background.mp4, prefer video; else image is used -->
+  <script>
+    // If you want video background: ensure file is named background.mp4 in the repo
+    (function(){
+      // try find video tag
+      const vid = document.querySelector('video');
+      if(vid){
+        // if video exists, hide the image fallback
+        const img = document.querySelector('.bg-media img');
+        if(img) img.style.display='none';
+        // Ensure it plays muted for autoplay rules
+        vid.muted = true; vid.loop = true; vid.playsInline = true;
+        vid.play().catch(()=>{ /* ignore autoplay block */ });
+      }
+    })();
+  </script>
+</body>
 </html>
